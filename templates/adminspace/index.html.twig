@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Contact index{% endblock %}
+
+{% block body %}
+{{ parent() }}
+
+        <a href="{{ path('app_logout') }}" class="btn btn-lg btn-lg float-right" style="background-color: #4830306b;text-decoration-color: #da0a45;margin: 2.3rem 0;max-width:140px; text-align:center;">Logout</a>
+
+
+    <section class="class section" id="class">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-lg-12 col-12 text-center mb-5">
+                    <h6 data-aos="fade-up">Admin Space</h6>
+
+                    <h2 data-aos="fade-up" data-aos-delay="200">Messages reçus</h2>
+                </div>
+                {% for contact in contacts %}
+                <div class="col-lg-4 col-md-6 col-12" data-aos="fade-up" data-aos-delay="400" style="margin-bottom:20px;">
+                    <div class="class-thumb">
+
+
+                        <div class="class-info">
+                            <B>
+                            <h4 class="mb-1">{{ contact.email }}</h4>
+                            </B>
+
+                            <span><strong><i class="fa fa-phone mr-1" style="color: #1e7e34"></i>{{contact.tel}}</strong> </span>
+
+                            <p class="mt-3">"{{contact.message}}"</p>
+
+                            <a href="{{ path('contact_delete', {'id': contact.id}) }}" style="color: #a71d2a">Delete</a>
+                        </div>
+                    </div>
+                </div>
+
+                {% else %}
+
+                       no records found
+
+                {% endfor %}
+                </tbody>
+
+            </div>
+        </div>
+    </section>
+
+{% endblock %}
+

@@ -1,0 +1,64 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Log in{% endblock %}
+
+{% block body %}
+<section class="hero d-flex flex-column justify-content-center align-items-center" >
+    <div class="container" style="margin-top: 2%;" >
+    <div class="row row- justify-content-center" >
+        <div class="col-8">
+
+    <form method="post">
+
+    {% if error %}
+        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+    {% endif %}
+
+    {% if app.user %}
+        <div class="mb-3">
+            You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
+            <meta http-equiv='refresh' content='0; URL={{ path('adminspace') }}'>
+        </div>
+        </form>
+
+        </div>
+        </div>
+        </div>
+    {% endif %}
+
+    <h2 class="text-center"  style="margin: 30px ;color: #9fcdff",> Sign In </h2>
+    <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" required autocomplete="off" placeholder="Admin adress" >
+    <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" style="margin-top: 30px" required>
+
+
+
+    <input type="hidden" name="_csrf_token"
+           value="{{ csrf_token('authenticate') }}"
+    >
+
+    {#
+        Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
+        See https://symfony.com/doc/current/security/remember_me.html
+
+        <div class="checkbox mb-3">
+            <label>
+                <input type="checkbox" name="_remember_me"> Remember me
+            </label>
+        </div>
+    #}
+
+    <a href="{{path('adminspace') }}" class="btn btn-lg btn-success"  
+    style="background: #28a74557" type="submit" >Sign in</a> 
+     
+    <a href="{{path('app_register') }}" class="btn btn-lg btn-success"  
+    style="background: #28a74557" type="submit" >Register</a>
+    
+
+    </form>
+    <p></p> 
+    <div>  
+    <p></p>  
+    </div>
+</section>
+
+{% endblock %}
